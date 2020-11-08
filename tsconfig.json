@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "target": "esnext",
     "module": "commonjs",
     "lib": [
@@ -14,5 +13,7 @@
   },
   "exclude": [
     "node_modules",
+    "**/webpack.*.js",
+    "dist/*"
   ]
 }
