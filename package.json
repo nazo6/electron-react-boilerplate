@@ -1,0 +1,48 @@
+{
+  "name": "electron-react-boilerplate",
+  "version": "0.1.0",
+  "author": "nazo",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development run-p renderer:serve main:watch electron:wait",
+    "renderer:serve": "webpack serve --config ./app/renderer/webpack.dev.js --hot --color",
+    "main:watch": "webpack --config ./app/main/webpack.dev.js",
+    "electron:wait": "run-s main:wait electron:start",
+    "main:wait": "wait-on http://localhost:9000",
+    "electron:start": "electron ./dist/development/main/main.js",
+    "release": "run-s desktop:build electron:build",
+    "webpack:build": "run-s renderer:build main:build",
+    "renderer:build": "webpack --config ./app/renderer/webpack.prod.js",
+    "main:build": "webpack --config ./app/main/webpack.prod.js",
+    "electron:build": "electron-builder --x64 --publish=never"
+  },
+  "dependencies": {
+    "electron-devtools-installer": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-react": "^7.12.5",
+    "@babel/preset-typescript": "^7.12.1",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@types/react-dom": "^16.9.9",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "electron": "^10.1.5",
+    "electron-builder": "^22.9.1",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "html-loader": "^1.3.2",
+    "html-webpack-plugin": "^4.5.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-refresh": "^0.9.0",
+    "typescript": "^4.0.5",
+    "wait-on": "^5.2.0",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.3.0"
+  }
+}
