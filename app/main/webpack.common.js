@@ -1,5 +1,5 @@
 const path = require('path')
-//const nodeExternals = require('webpack-node-externals')
+const nodeExternals = require('webpack-node-externals')
 
 const mainDirectory = __dirname
 
@@ -9,7 +9,7 @@ module.exports = {
     preload: path.resolve(mainDirectory, 'src/preload.ts'),
   },
   target: 'electron-main',
-  //externals: [nodeExternals()],
+  externals: [nodeExternals()],
   output: {
     filename: '[name].js',
   },
@@ -25,7 +25,7 @@ module.exports = {
               presets: ['@babel/preset-react', '@babel/preset-typescript'],
             },
           },
-        ]
+        ],
       },
     ],
   },

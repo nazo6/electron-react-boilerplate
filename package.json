@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "author": "nazo",
   "license": "MIT",
+  "main": "./dist/production/main.js",
+  "build": {
+    "appId": "io.github.nazo6.electron-react-boilerplate",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/production"
+    ]
+  },
   "scripts": {
     "start": "cross-env NODE_ENV=development run-p renderer:serve main:watch electron:wait",
     "renderer:serve": "webpack serve --config ./app/renderer/webpack.dev.js --hot --color",
@@ -10,7 +20,7 @@
     "electron:wait": "run-s main:wait electron:start",
     "main:wait": "wait-on http://localhost:9000",
     "electron:start": "electron ./dist/development/main/main.js",
-    "release": "run-s desktop:build electron:build",
+    "release": "run-s webpack:build electron:build",
     "webpack:build": "run-s renderer:build main:build",
     "renderer:build": "webpack --config ./app/renderer/webpack.prod.js",
     "main:build": "webpack --config ./app/main/webpack.prod.js",
@@ -43,6 +53,7 @@
     "webpack": "^5.4.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.3.0"
+    "webpack-merge": "^5.3.0",
+    "webpack-node-externals": "^2.5.2"
   }
 }
