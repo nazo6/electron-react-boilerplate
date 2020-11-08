@@ -25,6 +25,14 @@ module.exports = {
               presets: ['@babel/preset-react', '@babel/preset-typescript'],
             },
           },
+          {
+            loader: 'webpack-preprocessor-loader',
+            options: {
+              params: {
+                ENV: process.env.NODE_ENV,
+              },
+            },
+          },
         ],
       },
     ],

@@ -1,9 +1,7 @@
 /*eslint-env node */
 
 import {app, BrowserWindow, ipcMain, dialog} from 'electron'
-import path from 'path'
-
-const isDev = process.env.NODE_ENV === 'development'
+import * as path from 'path'
 
 app.on('ready', async () => {
   const mainWindow = new BrowserWindow({
@@ -19,29 +17,33 @@ app.on('ready', async () => {
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
-    if (isDev) {
-      mainWindow.webContents.openDevTools()
-    }
+    // #!if ENV === 'development'
+    mainWindow.webContents.openDevTools()
+    // #!endif
   })
 
-  const devPath = 'http://localhost:9000'
-  const prodPath = path.join(__dirname, 'index.html')
-  const url = isDev ? devPath : prodPath
+  // #!if ENV === 'development'
+  // @ts-ignore
+  const url = 'http://localhost:9000'
+  // #!else
+  // @ts-ignore
+  const url = path.join(__dirname, 'index.html')
+  // #!endif
 
   mainWindow.setMenu(null)
   mainWindow.loadURL(url)
 })
 
 app.on('ready', () => {
-  if (isDev) {
-    const {
-      default: installExtension,
-      REACT_DEVELOPER_TOOLS,
-    } = require('electron-devtools-installer')
-    installExtension([REACT_DEVELOPER_TOOLS])
-      .then((name: any) => console.log(`Added Extension: ${name}`))
-      .catch((err: any) => console.log('An error occurred: ', err))
-  }
+  // #!if ENV === 'development'
+  const {
+    default: installExtension,
+    REACT_DEVELOPER_TOOLS,
+  } = require('electron-devtools-installer')
+  installExtension([REACT_DEVELOPER_TOOLS])
+    .then((name: any) => console.log(`Added Extension: ${name}`))
+    .catch((err: any) => console.log('An error occurred: ', err))
+  // #!endif
 })
 
 app.on('window-all-closed', app.quit)
