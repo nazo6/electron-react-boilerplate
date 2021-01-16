@@ -1,7 +1,7 @@
-const path = require('path')
-const nodeExternals = require('webpack-node-externals')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-const mainDirectory = __dirname
+const mainDirectory = __dirname;
 
 module.exports = {
   entry: {
@@ -44,4 +44,4 @@ module.exports = {
     __dirname: false,
     __filename: false,
   },
-}
+};

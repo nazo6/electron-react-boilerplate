@@ -1,9 +1,9 @@
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 
-const rendererDirectory = __dirname
+const rendererDirectory = __dirname;
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [path.resolve(rendererDirectory, 'src/index.tsx')],
@@ -21,10 +21,10 @@ module.exports = {
             options: {
               cacheDirectory: true,
               presets: ['@babel/preset-react', '@babel/preset-typescript'],
-              plugins: []
+              plugins: [],
             },
           },
-        ]
+        ],
       },
       {
         test: /\.(html?)$/,
@@ -42,4 +42,4 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.html'],
   },
-}
+};

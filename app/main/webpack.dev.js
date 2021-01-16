@@ -1,8 +1,8 @@
-const {merge} = require('webpack-merge')
-const common = require('./webpack.common')
-const path = require('path')
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common');
+const path = require('path');
 
-const appDirectory = path.resolve(__dirname, '../../')
+const appDirectory = path.resolve(__dirname, '../../');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -11,4 +11,4 @@ module.exports = merge(common, {
     path: path.resolve(appDirectory, 'dist/development/main'),
   },
   watch: true,
-})
+});

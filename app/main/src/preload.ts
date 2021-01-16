@@ -1,11 +1,11 @@
 /*eslint-env node */
 
-const {contextBridge, ipcRenderer} = require('electron')
+import { contextBridge, ipcRenderer } from 'electron';
 
 //Sample apis.
 contextBridge.exposeInMainWorld('api', {
   alert: async (title: string, message: string) => {
-    await ipcRenderer.invoke('alert', {title, message})
-    return
+    await ipcRenderer.invoke('alert', { title, message });
+    return;
   },
-})
+});
